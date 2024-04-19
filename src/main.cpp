@@ -1,16 +1,23 @@
 #include <iostream>
-#include <string>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
-
+#include <string>
+#include<thread>
 using namespace std;
 using namespace ftxui;
 
 int main(int argc, char const *argv[])
 {
-    Element lienzo = hbox ({
-        spinner(21,3) | bold
-    })
+
+    
+
+    int fotograma = 0;
+
+    while(true){
+        fotograma ++;
+       Element lienzo = hbox({
+        spinner(21,fotograma) | bold | color(Color::Yellow)
+    });
 
     Screen pantalla = Screen::Create(
         Dimension::Full(),
@@ -20,6 +27,8 @@ int main(int argc, char const *argv[])
     Render(pantalla,lienzo);
     pantalla.Print();
     pantalla.ResetPosition();
-
-    return 0;
+    this_thread::sleep_for(0.1s);
+  
+    }
+   
 }
