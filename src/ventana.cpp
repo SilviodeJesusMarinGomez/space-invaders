@@ -9,26 +9,34 @@ using namespace ftxui;
 
 int main(int argc, char const *argv[])
 {
+    int posicionInicialX = 10;
+    int posicionInicialY = 10;
+
     
-    int posicionX = 6;
-    int posicionY = 4;
-    string prueba = "DVD";
+    string palabra = "DVD";
+
     while(true){
         this_thread::sleep_for(0.1s);
         auto Pantalla = Screen::Create(Dimension::Full(), Dimension::Fixed(10));
-        Pantalla.PixelAt(5, 5).character = 'm';
-        Render(Pantalla, border(text("Hola")));
+        
         
 
-      
+        int posicionPalabraX = 0;
+        int posicionPalabraY = 0;
 
-        for (auto &&letra : prueba)
+        for (auto &&letra : palabra)
         {
-            Pantalla.PixelAt(posicionX, posicionY).character = letra;
-            posicionX++;
+          int posicionFinalX = posicionInicialX + posicionPalabraX;
+          int posicionFinalY = posicionInicialY + posicionPalabraY;
+            Pantalla.PixelAt(posicionFinalX, posicionFinalY).character = letra;
+            posicionPalabraX++;
     }
     Pantalla.Print();
+    Pantalla.Clear();
     cout<<Pantalla.ResetPosition();
+
+    posicionInicialX++;
+    posicionInicialY++;
   }
     
     

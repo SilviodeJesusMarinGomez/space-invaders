@@ -1,29 +1,36 @@
-#include <fstream>
-#include <ftxui/dom/elements.hpp>
-using namespace std;
-using namespace ftxui;
-
+#pragma once
+#include<string>
 class Dibujo
 {
 private:
-    fstream archivo;
-    Element contenido;
+    int posicionX;
+    int posicionY;
+    string palabra;
+
 public:
-    Dibujo(string path)
-    {
-        archivo.open(path);
-        Elements lineas;
-        while (!archivo.eof())
+    Dibujo(){
+        this->posicionX = 0;
+        this->posicionY = 0;
+    }
+    void Dibujar(ftxui::Screen Pantalla){
+        int posicionPalabraX = 0;
+        int posicionPalabraY = 0;
+
+        for (auto &&letra : palabra)
         {
-            string linea;
-            getline(archivo, linea);
-            lineas.emplace_back(text(linea));
-        }
-        this->contenido = vbox(lineas);
-        archivo.close();
+          int posicionFinalX = posicionInicialX + posicionPalabraX;
+          int posicionFinalY = posicionInicialY + posicionPalabraY;
+            Pantalla.PixelAt(posicionFinalX, posicionFinalY).character = letra;
+            posicionPalabraX++;
     }
-    Element GetElement(){
-        return this->contenido;
     }
-    ~Dibujo() {}
+    ~Dibujo();
 };
+
+Dibujo::Dibujo(/* args */)
+{
+}
+
+Dibujo::~Dibujo()
+{
+}
