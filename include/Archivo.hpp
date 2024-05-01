@@ -1,3 +1,4 @@
+#pragma once
 #include <fstream>
 #include <ftxui/dom/elements.hpp>
 using namespace std;
@@ -12,15 +13,16 @@ public:
     Archivo(string path)
     {
         archivo.open(path);
-        Elements lineas;
         while (!archivo.eof())
         {
             string linea;
             getline(archivo, linea);
-            lineas.emplace_back(text(linea));
+            contenido.push_back(linea);
         }
-        this->contenido = vbox(lineas);
         archivo.close();
+    }
+    Dibujo CrearDibujo(){
+        
     }
     Element GetElement(){
         return this->contenido;

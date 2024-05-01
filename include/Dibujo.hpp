@@ -12,6 +12,7 @@ public:
         this->posicionX = 0;
         this->posicionY = 0;
     }
+    Dibujo
     void Dibujar(ftxui::Screen Pantalla){
         int posicionPalabraX = 0;
         int posicionPalabraY = 0;

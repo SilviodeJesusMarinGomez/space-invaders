@@ -3,17 +3,28 @@
 #include<ftxui/dom/elements.hpp>
 #include<ftxui/screen/screen.hpp>
 #include<thread>
+#include<list>
+#include<experimental/random>
 
 using namespace std;
 using namespace ftxui;
 
 int main(int argc, char const *argv[])
 {
-    int posicionInicialX = 10;
-    int posicionInicialY = 10;
-
-    
-    string palabra = "DVD";
+   list<Dibujo>dibujos;
+   for (int i = 0; i < 20; i++)
+   {
+    Dibujo palabra(
+    "Hola" + to_string(1),
+     experimental::randint(0,100), 
+     experimental::randint(0,100));
+    dibujos.push_back(palabra);
+   }
+   
+   auto Pantalla = Screen::Create(
+    Dimension::Full(),
+    Dimension::Full()
+   );
 
     while(true){
         this_thread::sleep_for(0.1s);
